@@ -1,0 +1,7 @@
+app:
+  name: e079e8d7-9153-42a0-8b4c-d4e0022c2e6b
+  version: 1.0.0
+
+server:
+  host: localhost
+  port: 8080

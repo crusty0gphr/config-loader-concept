@@ -1,0 +1,33 @@
+database:
+  host: db.service3.local
+  port: 5432
+  name: service3_db
+  user: service3_user
+  password: service3_password
+
+logging:
+  level: WARN
+  format: json
+
+features:
+  enable_feature_c: false
+  enable_feature_d: true
+
+security:
+  jwt_secret: "service3_jwt_secret_key"
+  allowed_ips:
+    - 192.168.3.1
+    - 192.168.3.2
+
+external_apis:
+  service_e:
+    url: "https://api.service_e.com"
+    timeout: 25s
+  service_f:
+    url: "https://api.service_f.com"
+    timeout: 25s
+
+limits:
+  max_connections: 75
+  request_timeout: 12s
+  rate_limit: 750
