@@ -1,0 +1,7 @@
+app:
+  name: 6b631a97-b02f-4d77-8366-4a75f99b3d26
+  version: 1.0.0
+
+server:
+  host: localhost
+  port: 9090

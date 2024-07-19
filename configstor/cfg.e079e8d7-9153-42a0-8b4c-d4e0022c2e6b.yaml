@@ -1,0 +1,33 @@
+database:
+  host: db.service1.local
+  port: 5432
+  name: service1_db
+  user: service1_user
+  password: service1_password
+
+logging:
+  level: INFO
+  format: json
+
+features:
+  enable_feature_x: true
+  enable_feature_y: false
+
+security:
+  jwt_secret: "your_jwt_secret_key"
+  allowed_ips:
+    - 192.168.1.1
+    - 192.168.1.2
+
+external_apis:
+  service_a:
+    url: "https://api.service_a.com"
+    timeout: 30s
+  service_b:
+    url: "https://api.service_b.com"
+    timeout: 30s
+
+limits:
+  max_connections: 100
+  request_timeout: 10s
+  rate_limit: 1000
