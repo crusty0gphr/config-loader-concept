@@ -72,7 +72,7 @@ root/
 
 ### Directory and File Descriptions
 * **configloader/**: Contains the source code and related files for the config-loader service, responsible for distributing updated configuration files to other services.
-* **configstor/**: Stores the centralized configuration files that are managed and distributed by the config-loader service. Each YAML file corresponds to a different service:
+* **configs/**: Stores the centralized configuration files that are managed and distributed by the config-loader service. Each YAML file corresponds to a different service:
   - cfg.service1.yaml: Configuration for service1
   - cfg.service2.yaml: Configuration for service2
   - cfg.service3.yaml: Configuration for service3
