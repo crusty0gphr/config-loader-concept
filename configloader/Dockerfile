@@ -1,13 +1,17 @@
-FROM golang:1.22-alpine
+FROM golang:1.22-alpine as config-loader-builder
 
 WORKDIR /app
 
-COPY go.mod go.sum ./
+# Copy go.mod and go.sum files from the root directory
+COPY ../go.mod ../go.sum ./
 
+# Download dependencies
 RUN go mod download
 
-COPY . .
+# Copy the rest of the application code
+COPY ../ ./
 
-RUN go build -o main .
+# Build the application
+RUN go build -o /app/bin/configloader ./configloader/cmd
 
-CMD ["./main"]
+CMD ["/app/bin/configloader"]
