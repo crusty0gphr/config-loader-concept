@@ -12,22 +12,3 @@ logging:
 features:
   enable_feature_a: true
   enable_feature_b: true
-
-security:
-  jwt_secret: "another_jwt_secret_key"
-  allowed_ips:
-    - 192.168.2.1
-    - 192.168.2.2
-
-external_apis:
-  service_c:
-    url: "https://api.service_c.com"
-    timeout: 20s
-  service_d:
-    url: "https://api.service_d.com"
-    timeout: 20s
-
-limits:
-  max_connections: 50
-  request_timeout: 15s
-  rate_limit: 500

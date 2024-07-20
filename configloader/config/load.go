@@ -4,9 +4,12 @@ import (
 	_ "embed"
 	"fmt"
 	"log"
+	"os"
 
 	"gopkg.in/yaml.v3"
 )
+
+const natsUrlEnv = "NATS_URL"
 
 type App struct {
 	Name    string `yaml:"name"`
@@ -21,9 +24,10 @@ type Nats struct {
 type ConfigsList map[string]string
 
 type Config struct {
-	App     App         `yaml:"app"`
-	Nats    Nats        `yaml:"nats"`
-	Configs ConfigsList `yaml:"configs"`
+	App              App         `yaml:"app"`
+	Nats             Nats        `yaml:"nats"`
+	Configs          ConfigsList `yaml:"configs"`
+	ConfigBucketName string      `yaml:"config-bucket-name"`
 }
 
 //go:embed cfg.base.yaml
@@ -42,5 +46,19 @@ func Load() Config {
 }
 
 func (cfg Config) BuildNatsUrl() string {
-	return fmt.Sprintf("nats://%s:%s", cfg.Nats.Host, cfg.Nats.Port)
+	return getEnv(
+		natsUrlEnv,
+		fmt.Sprintf("nats://%s:%s", cfg.Nats.Host, cfg.Nats.Port),
+	)
+}
+
+func (cfg Config) GetConfigsList() map[string]string {
+	return cfg.Configs
+}
+
+func getEnv(key, defaultValue string) string {
+	if value, exists := os.LookupEnv(key); exists {
+		return value
+	}
+	return defaultValue
 }

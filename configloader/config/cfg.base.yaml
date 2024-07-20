@@ -3,8 +3,10 @@ app:
   version: 1.0.0
 
 nats:
-  host: localhost
+  host: 0.0.0.0
   port: 4222
+
+config-bucket-name: configs
 
 configs:
   e079e8d7-9153-42a0-8b4c-d4e0022c2e6b: configs/cfg.e079e8d7-9153-42a0-8b4c-d4e0022c2e6b.yaml

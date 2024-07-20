@@ -1,14 +1,16 @@
-version: '3.8'
-
 services:
   nats:
-    image: nats:latest
+    image: docker.io/nats:latest
     ports:
       - "4222:4222"
       - "8222:8222" # For monitoring
+    command:
+      - "-js"
 
   config-loader:
-    build: ./configloader
+    build:
+      context: .
+      dockerfile: ./configloader/Dockerfile
     depends_on:
       - nats
     environment:
