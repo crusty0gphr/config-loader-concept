@@ -52,7 +52,7 @@ ___
 ```
 root/
 ├── configloader
-├── configstor/
+├── configs/
 │   ├── cfg.service1.yaml
 │   ├── cfg.service2.yaml
 │   └── cfg.service3.yaml
@@ -83,3 +83,18 @@ root/
     - config/: Contains the base configuration file (cfg.base.yaml) for service2.
   - **service3/**:
     - config/: Contains the base configuration file (cfg.base.yaml) for service3.
+
+___
+### Run services
+Makefile for managing Docker containers
+
+```bash
+make          # Build and start all services
+make build    # Build all Docker images
+make up       # Start all services
+make down     # Stop all services
+make clean    # Stop services and remove containers, networks, volumes, and images
+make logs     # Tail logs for all services
+make restart  # Restart all services
+make help     # Display this help message
+```
