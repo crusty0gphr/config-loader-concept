@@ -13,32 +13,11 @@ To achieve the automated configuration update process, I have designed a system 
   - Subscribe to specific NATS subjects to receive their respective configuration updates.
   - Implement hot-swap logic to apply the new configuration without restarting.
 ___
-### Architecture Diagram
-```
-+-----------------+       +-----------------+       +-----------------+
-|                 |       |                 |       |                 |
-|  Service 1      |       |  Service 2      |       |  Service 3      |
-|                 |       |                 |       |                 |
-|   (Subscriber)  |       |   (Subscriber)  |       |   (Subscriber)  |
-+-------+---------+       +-------+---------+       +-------+---------+
-        |                         |                         |
-        +-------------------------+-------------------------+
-                                  |
-                                  v
-                          +-----------------+
-                          |                 |
-                          |  NATS Server    |
-                          |                 |
-                          +-------+---------+
-                                  |
-                                  v
-                          +-----------------+
-                          |                 |
-                          | Config-Loader   |
-                          |    (Producer)   |
-                          |                 |
-                          +-----------------+
-```
+### High Level Architecture
+![image](high-level-architecture.png)
+
+### Low Level Architecture
+![image](low-level-architecture.png)
 ___
 ### Basic implementation
 * **Config-Loader Service**:
