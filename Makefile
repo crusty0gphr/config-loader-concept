@@ -1,5 +1,5 @@
 # Define service names
-SERVICES := config-loader # TODO: add services here
+SERVICES := config-loader random-modifier # TODO: add services here
 # Docker Compose file
 DOCKER_COMPOSE_FILE := docker-compose.yml
 
@@ -11,30 +11,31 @@ all: build up
 .PHONY: build
 build:
 	@echo "Building Docker images..."
-	$(foreach service, $(SERVICES), docker-compose -f $(DOCKER_COMPOSE_FILE) build $(service);)
+	$(foreach service, $(SERVICES), docker compose -f $(DOCKER_COMPOSE_FILE) build $(service);)
 
 # Start all services
 .PHONY: up
 up:
 	@echo "Starting services..."
-	@docker-compose -f $(DOCKER_COMPOSE_FILE) up -d
+	@docker compose -f $(DOCKER_COMPOSE_FILE) up -d
+	@docker compose -f $(DOCKER_COMPOSE_FILE) logs -f
 
 # Stop all services
 .PHONY: down
 down:
 	@echo "Stopping services..."
-	@docker-compose -f $(DOCKER_COMPOSE_FILE) down
+	@docker compose -f $(DOCKER_COMPOSE_FILE) down
 
 # Clean up: stop services and remove containers, networks, volumes, and images
 .PHONY: clean
 clean:
 	@echo "Cleaning up..."
-	@docker-compose -f $(DOCKER_COMPOSE_FILE) down --rmi all -v --remove-orphans
+	@docker compose -f $(DOCKER_COMPOSE_FILE) down --rmi all -v --remove-orphans
 
 # Tail logs for all services
 .PHONY: logs
 logs:
-	@docker-compose -f $(DOCKER_COMPOSE_FILE) logs -f
+	@docker compose -f $(DOCKER_COMPOSE_FILE) logs -f
 
 # Restart services
 .PHONY: restart

@@ -7,6 +7,42 @@ services:
     command:
       - "-js"
 
+  postgres-fba1977e:
+    image: postgres:latest
+    container_name: postgres-fba1977e
+    environment:
+      POSTGRES_DB: c3f106287d67
+      POSTGRES_USER: fba1977e
+      POSTGRES_PASSWORD: fba1977e-6359-4292-9405-c3f106287d67
+    ports:
+      - "5433:5432"
+    volumes:
+      - postgres-fba1977e_data:/var/lib/postgresql/data
+
+  postgres-1f65e1cf:
+    image: postgres:latest
+    container_name: postgres-1f65e1cf
+    environment:
+      POSTGRES_DB: 5f93ac4a5894
+      POSTGRES_USER: 1f65e1cf
+      POSTGRES_PASSWORD: 1f65e1cf-7a57-4e4b-8e1b-5f93ac4a5894
+    ports:
+      - "5434:5432"
+    volumes:
+      - postgres-1f65e1cf_data:/var/lib/postgresql/data
+
+  postgres-d84ae75d:
+    image: postgres:latest
+    container_name: postgres-d84ae75d
+    environment:
+      POSTGRES_DB: e18a1046226a
+      POSTGRES_USER: d84ae75d
+      POSTGRES_PASSWORD: d84ae75d-f795-4be5-8979-e18a1046226a
+    ports:
+      - "5435:5432"
+    volumes:
+      - postgres-d84ae75d_data:/var/lib/postgresql/data
+
   config-loader:
     build:
       context: .
@@ -17,3 +53,15 @@ services:
       - NATS_URL=nats://nats:4222
     volumes:
       - ./configs:/app/configs
+
+  random-modifier:
+    build:
+      context: .
+      dockerfile: configmodifier/Dockerfile
+    volumes:
+      - ./configs:/app/configs
+
+volumes:
+  postgres-fba1977e_data:
+  postgres-1f65e1cf_data:
+  postgres-d84ae75d_data:

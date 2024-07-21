@@ -45,6 +45,7 @@ root/
 │   └── service3/
 │       └── config/
 │           └── cfg.base.yaml
+├── configmodifier
 ├── docker-compose.yaml
 └── Makefile
 ```
@@ -62,6 +63,7 @@ root/
     - config/: Contains the base configuration file (cfg.base.yaml) for service2.
   - **service3/**:
     - config/: Contains the base configuration file (cfg.base.yaml) for service3.
+* **configmodifier/**: A service that modifies YAML configuration files on a random schedule
 
 ___
 ### Run services

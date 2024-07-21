@@ -1,14 +1,8 @@
 database:
-  host: db.service2.local
-  port: 5432
-  name: service2_db
-  user: service2_user
-  password: service2_password
-
+    user: postgres://1f65e1cf:1f65e1cf-7a57-4e4b-8e1b-5f93ac4a5894@localhost:5434/5f93ac4a5894?sslmode=disable
 logging:
-  level: DEBUG
-  format: text
-
+    level: ERROR
+    format: text
 features:
-  enable_feature_a: true
-  enable_feature_b: true
+    enable_feature_x: true
+    enable_feature_y: true
