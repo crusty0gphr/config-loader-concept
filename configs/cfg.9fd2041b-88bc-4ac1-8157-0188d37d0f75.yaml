@@ -1,14 +1,8 @@
 database:
-  host: db.service3.local
-  port: 5432
-  name: service3_db
-  user: service3_user
-  password: service3_password
-
+    user: postgres://1f65e1cf:1f65e1cf-7a57-4e4b-8e1b-5f93ac4a5894@localhost:5434/5f93ac4a5894?sslmode=disable
 logging:
-  level: WARN
-  format: json
-
+    level: INFO
+    format: text
 features:
-  enable_feature_c: false
-  enable_feature_d: true
+    enable_feature_x: false
+    enable_feature_y: true

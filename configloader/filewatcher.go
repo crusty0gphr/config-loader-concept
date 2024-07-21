@@ -9,7 +9,7 @@ import (
 	"github.com/nats-io/nats.go"
 )
 
-const checkInterval = 5 * time.Second
+const checkInterval = 3 * time.Second
 
 type fileWatcher struct {
 	service string
