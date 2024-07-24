@@ -10,7 +10,7 @@ import (
 )
 
 type Database struct {
-	Host string `yaml:"user"`
+	Host string `yaml:"host"`
 }
 
 type Logging struct {
@@ -23,8 +23,13 @@ type Features struct {
 	EnableFeatureY bool `yaml:"enable_feature_y"`
 }
 
+type Nats struct {
+	Host string `yaml:"host"`
+}
+
 type Config struct {
 	Database Database `yaml:"database"`
+	Nats     Nats     `yaml:"nats"`
 	Logging  Logging  `yaml:"logging"`
 	Features Features `yaml:"features"`
 }
@@ -33,7 +38,7 @@ type dbCred struct {
 	user   string
 	dbName string
 	pass   string
-	port   string
+	host   string
 }
 
 type dbCredentials []dbCred
@@ -43,9 +48,9 @@ func (d dbCredentials) GetRandom() dbCred {
 }
 
 var dbCredPool = dbCredentials{
-	{user: "fba1977e", dbName: "c3f106287d67", pass: "fba1977e-6359-4292-9405-c3f106287d67", port: "5433"},
-	{user: "1f65e1cf", dbName: "5f93ac4a5894", pass: "1f65e1cf-7a57-4e4b-8e1b-5f93ac4a5894", port: "5434"},
-	{user: "d84ae75d", dbName: "e18a1046226a", pass: "d84ae75d-f795-4be5-8979-e18a1046226a", port: "5435"},
+	{user: "fba1977e", dbName: "c3f106287d67", pass: "fba1977e-6359-4292-9405-c3f106287d67", host: "postgres-fba1977e"},
+	{user: "1f65e1cf", dbName: "5f93ac4a5894", pass: "1f65e1cf-7a57-4e4b-8e1b-5f93ac4a5894", host: "postgres-1f65e1cf"},
+	{user: "d84ae75d", dbName: "e18a1046226a", pass: "d84ae75d-f795-4be5-8979-e18a1046226a", host: "postgres-d84ae75d"},
 }
 
 var backup = "configs/cfg.backup.yaml"
@@ -54,10 +59,10 @@ func randomModifyConfig(config *Config) {
 	dbc := dbCredPool.GetRandom()
 
 	config.Database.Host = fmt.Sprintf(
-		"postgres://%s:%s@localhost:%s/%s?sslmode=disable",
+		"postgres://%s:%s@%s/%s?sslmode=disable",
 		dbc.user,
 		dbc.pass,
-		dbc.port,
+		dbc.host,
 		dbc.dbName,
 	)
 	config.Logging.Level = []string{"DEBUG", "INFO", "WARN", "ERROR"}[rand.IntN(4)]

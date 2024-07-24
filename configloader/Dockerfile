@@ -1,4 +1,4 @@
-FROM golang:1.22-alpine as config-loader-builder
+FROM golang:1.22-alpine AS config-loader-builder
 
 WORKDIR /app
 

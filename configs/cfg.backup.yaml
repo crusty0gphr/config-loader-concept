@@ -1,6 +1,9 @@
 database:
   host: postgres://fba1977e:fba1977e-6359-4292-9405-c3f106287d67@localhost:5433/c3f106287d67?sslmode=disable
 
+nats:
+  host: nats://0.0.0.0:4222
+
 logging:
   level: DEBUG
   format: text

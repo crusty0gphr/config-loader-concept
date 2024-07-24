@@ -52,7 +52,7 @@ func RunFileWatcher(files map[string]string, updates chan<- string) {
 
 				// Check if the file has been modified since the last check
 				if currentModTime.After(file.modTime) {
-					fmt.Printf("File %s has been modified at %s\n", file.path, currentModTime)
+					log.Printf("File %s has been modified at %s", file.path, currentModTime)
 					// Update the modification time
 					filesToWatch[i].modTime = currentModTime
 
