@@ -61,6 +61,22 @@ services:
     volumes:
       - ./configs:/app/configs
 
+  service-6b631a97:
+    build:
+      context: .
+      dockerfile: servicepool/servcie6b631a97/Dockerfile
+    depends_on:
+      - nats
+      - config-loader
+      - postgres-fba1977e
+      - postgres-1f65e1cf
+      - postgres-d84ae75d
+    volumes:
+      - ./configs/cfg.6b631a97-b02f-4d77-8366-4a75f99b3d26.yaml:/app/configs/cfg.6b631a97-b02f-4d77-8366-4a75f99b3d26.yaml
+    environment:
+      - CONFIG_PATH=/app/configs/cfg.6b631a97-b02f-4d77-8366-4a75f99b3d26.yaml
+      - NATS_URL=nats://nats:4222
+
 volumes:
   postgres-fba1977e_data:
   postgres-1f65e1cf_data:

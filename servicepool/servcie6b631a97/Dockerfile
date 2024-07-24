@@ -1,4 +1,4 @@
-FROM golang:1.22-alpine AS mock-config-modify-builder
+FROM golang:1.22-alpine AS service-6b631a97-builder
 
 WORKDIR /app
 
@@ -12,6 +12,6 @@ RUN go mod download
 COPY ../ ./
 
 # Build the application
-RUN go build -o /app/bin/configmodifier ./configmodifier/cmd
+RUN go build -o /app/bin/service/6b631a97 ./servicepool/servcie6b631a97/cmd
 
-CMD ["/app/bin/configmodifier"]
+CMD ["/app/bin/service/6b631a97"]

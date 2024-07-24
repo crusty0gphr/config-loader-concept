@@ -1,5 +1,5 @@
 # Define service names
-SERVICES := config-loader random-modifier # TODO: add services here
+SERVICES := config-loader random-modifier service-6b631a97 # TODO: add services here
 # Docker Compose file
 DOCKER_COMPOSE_FILE := docker-compose.yml
 
