@@ -1,6 +1,7 @@
 package main
 
 import (
+	"log"
 	"math/rand/v2"
 	"time"
 
@@ -17,6 +18,7 @@ func main() {
 	ticker := time.NewTicker(15 * time.Second)
 	defer ticker.Stop()
 
+	log.Printf("Service up")
 	for {
 		i := rand.IntN(len(configs))
 

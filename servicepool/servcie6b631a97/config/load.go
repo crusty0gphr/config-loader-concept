@@ -13,9 +13,10 @@ import (
 const externalConfigPathEnv = "CONFIG_PATH"
 
 type AppConfig struct {
-	Name       string `yaml:"name"`
-	Version    string `yaml:"version"`
-	ConfigPath string `yaml:"config_path"`
+	Name           string `yaml:"name"`
+	Version        string `yaml:"version"`
+	ConfigPath     string `yaml:"config_path"`
+	KeyValueBucket string `yaml:"key_value_bucket"`
 }
 
 type ServerConfig struct {
@@ -23,8 +24,13 @@ type ServerConfig struct {
 	Port int    `yaml:"port"`
 }
 
+type Nats struct {
+	Host string `yaml:"host"`
+}
+
 type Base struct {
 	App    AppConfig    `yaml:"app"`
+	Nats   Nats         `yaml:"nats"`
 	Server ServerConfig `yaml:"server"`
 }
 
@@ -50,6 +56,13 @@ func (b Base) GetExternalConfigPath() string {
 	)
 }
 
+func (b Base) BuildNatsUrl() string {
+	return getEnv(
+		natsUrlEnv,
+		b.Nats.Host,
+	)
+}
+
 func getEnv(key, defaultValue string) string {
 	if value, exists := os.LookupEnv(key); exists {
 		return value
@@ -69,10 +82,6 @@ type External struct {
 }
 
 type Database struct {
-	Host string `yaml:"host"`
-}
-
-type Nats struct {
 	Host string `yaml:"host"`
 }
 
@@ -102,11 +111,4 @@ func LoadExternal(path string) External {
 	}
 
 	return cfg
-}
-
-func (cfg External) BuildNatsUrl() string {
-	return getEnv(
-		natsUrlEnv,
-		cfg.NATS.Host,
-	)
 }

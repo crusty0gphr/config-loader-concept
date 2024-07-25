@@ -64,7 +64,9 @@ root/
   - **service3/**:
     - config/: Contains the base configuration file (cfg.base.yaml) for service3.
 * **configmodifier/**: A service that modifies YAML configuration files on a random schedule
-
+___
+### Package diagram
+![image](package-hierarchy.png)
 ___
 ### Run services
 Makefile for managing Docker containers

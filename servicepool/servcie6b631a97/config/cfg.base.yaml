@@ -1,7 +1,11 @@
 app:
   name: 6b631a97-b02f-4d77-8366-4a75f99b3d26
   version: 1.0.0
+  key_value_bucket: configs
   config_path: ./configs/cfg.6b631a97-b02f-4d77-8366-4a75f99b3d26.yaml
+
+nats:
+  host: nats://0.0.0.0:4222
 
 server:
   host: localhost

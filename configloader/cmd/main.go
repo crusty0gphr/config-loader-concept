@@ -5,41 +5,46 @@ import (
 
 	"github.com/config-loader-concept/configloader"
 	"github.com/config-loader-concept/configloader/config"
+	natsClient "github.com/config-loader-concept/pkg/nats"
 )
 
 func main() {
+	var err error
+
 	cfg := config.Load()
 
-	nats, err := configloader.NewNatsClient(cfg.BuildNatsUrl())
+	nats := natsClient.NewClient(
+		cfg.BuildNatsUrl(),
+		cfg.ConfigBucketName,
+	)
+	nats, err = nats.Connect()
 	if err != nil {
 		log.Fatal(err)
 		return
 	}
+	defer nats.Close()
 
-	defer func() {
-		log.Print("nat connection closed")
-		nats.Conn.Close()
-	}()
-
-	kvs, err := nats.RunKVStore(cfg.ConfigBucketName)
+	keyValueStore, err := nats.InitKeyValueStore()
 	if err != nil {
 		log.Fatal(err)
 		return
 	}
 
 	updates := make(chan string, 4)
-	go configloader.RunFileWatcher(cfg.Configs, updates)
+	go configloader.RunFileWatcher(cfg.ConfigsList, updates)
 
+	log.Printf("Service up")
 	for {
 		select {
 		case service := <-updates:
 			if err = configloader.FileChangeHandler(
 				service,
 				cfg.GetConfigsList()[service],
-				kvs,
+				keyValueStore,
 			); err != nil {
 				log.Fatal(err)
 			}
 		}
 	}
+
 }

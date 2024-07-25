@@ -1,9 +1,9 @@
 database:
-    host: postgres://fba1977e:fba1977e-6359-4292-9405-c3f106287d67@postgres-fba1977e/c3f106287d67?sslmode=disable
+    host: postgres://1f65e1cf:1f65e1cf-7a57-4e4b-8e1b-5f93ac4a5894@postgres-1f65e1cf/5f93ac4a5894?sslmode=disable
 nats:
-    host: nats://0.0.0.0:4222
+    host: ""
 logging:
-    level: DEBUG
+    level: INFO
     format: text
 features:
     enable_feature_x: true
