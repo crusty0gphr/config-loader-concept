@@ -26,7 +26,7 @@ type ConfigsList map[string]string
 type Config struct {
 	App              App         `yaml:"app"`
 	Nats             Nats        `yaml:"nats"`
-	Configs          ConfigsList `yaml:"configs"`
+	ConfigsList      ConfigsList `yaml:"configs"`
 	ConfigBucketName string      `yaml:"config-bucket-name"`
 }
 
@@ -53,7 +53,7 @@ func (cfg Config) BuildNatsUrl() string {
 }
 
 func (cfg Config) GetConfigsList() map[string]string {
-	return cfg.Configs
+	return cfg.ConfigsList
 }
 
 func getEnv(key, defaultValue string) string {

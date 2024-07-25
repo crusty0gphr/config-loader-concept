@@ -84,6 +84,6 @@ func FileChangeHandler(service, path string, kv nats.KeyValue) error {
 		return fmt.Errorf("nats: unable to put config into kv: %w", err)
 	}
 
-	log.Printf("successful config update for %s", service)
+	log.Printf("Successful config update for %s", service)
 	return nil
 }
