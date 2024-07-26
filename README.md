@@ -28,13 +28,6 @@ ___
 - **File Watching:** The Config-Loader service employs a file watcher mechanism to monitor configuration files for changes. When a change is detected, the updated configuration is pushed to the NATS KV store.
 - **Dynamic Reload:** Independent services subscribe to their respective configuration keys in the NATS KV store. Upon receiving an update, the service dynamically reloads the configuration, updating its internal settings without restarting.
 - **Ensuring Consistency:** The system ensures that only the latest configuration is applied. In case a service is temporarily down, it will retrieve the most recent configuration from the KV store upon restarting.
-
-### Docker and Deployment
-A Docker Compose file is provided to orchestrate the setup. This file ensures that all services are up and running with the correct configurations, facilitating seamless interaction between components. The Docker Compose setup simplifies the process of managing multi-container applications by defining the configuration in a single file.
-
-Additionally, the NATS server and JetStream KV store are configured with persistent storage. This configuration ensures that configuration data is retained even if containers are restarted, providing robustness and reliability to the system. Persistent storage prevents data loss and guarantees that services always have access to the most recent configurations.
-
-By leveraging these tools and configurations, the system achieves a high level of operational efficiency, scalability, and resilience, making it well-suited for dynamic and large-scale environments..
 ___
 
 ### Why NATS and JetStream KV Store?
