@@ -1,10 +1,8 @@
 database:
-    host: postgres://1f65e1cf:1f65e1cf-7a57-4e4b-8e1b-5f93ac4a5894@postgres-1f65e1cf/5f93ac4a5894?sslmode=disable
-nats:
-    host: ""
+    host: postgres://d84ae75d:d84ae75d-f795-4be5-8979-e18a1046226a@postgres-d84ae75d/e18a1046226a?sslmode=disable
 logging:
-    level: INFO
+    level: ERROR
     format: text
 features:
     enable_feature_x: true
-    enable_feature_y: true
+    enable_feature_y: false

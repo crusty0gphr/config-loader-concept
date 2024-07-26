@@ -2,7 +2,6 @@ package nats
 
 import (
 	"fmt"
-	"log"
 	"time"
 
 	"github.com/nats-io/nats.go"
@@ -75,7 +74,6 @@ func (c *Client) SubscribeForUpdates(key string, update chan []byte, errChan cha
 		entry := <-watch.Updates()
 		if entry != nil {
 			update <- entry.Value()
-			log.Printf("update was received and notified")
 		}
 	}
 }

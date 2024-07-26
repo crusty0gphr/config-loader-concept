@@ -1,4 +1,4 @@
-FROM golang:1.22-alpine AS service-6b631a97-builder
+FROM golang:1.22-alpine AS service-e079e8d7-builder
 
 WORKDIR /app
 
@@ -12,6 +12,6 @@ RUN go mod download
 COPY ../ ./
 
 # Build the application
-RUN go build -o /app/bin/service/6b631a97 ./servicepool/servcie6b631a97/cmd
+RUN go build -o /app/bin/service/e079e8d7 ./services/srvtwo/cmd
 
-CMD ["/app/bin/service/6b631a97"]
+CMD ["/app/bin/service/e079e8d7"]

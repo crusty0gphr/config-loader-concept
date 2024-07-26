@@ -23,13 +23,8 @@ type Features struct {
 	EnableFeatureY bool `yaml:"enable_feature_y"`
 }
 
-type Nats struct {
-	Host string `yaml:"host"`
-}
-
 type Config struct {
 	Database Database `yaml:"database"`
-	Nats     Nats     `yaml:"nats"`
 	Logging  Logging  `yaml:"logging"`
 	Features Features `yaml:"features"`
 }
