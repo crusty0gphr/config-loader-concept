@@ -64,7 +64,7 @@ services:
   service-6b631a97:
     build:
       context: .
-      dockerfile: servicepool/servcie6b631a97/Dockerfile
+      dockerfile: services/srvone/Dockerfile
     depends_on:
       - nats
       - config-loader
@@ -75,6 +75,38 @@ services:
       - ./configs/cfg.6b631a97-b02f-4d77-8366-4a75f99b3d26.yaml:/app/configs/cfg.6b631a97-b02f-4d77-8366-4a75f99b3d26.yaml
     environment:
       - CONFIG_PATH=/app/configs/cfg.6b631a97-b02f-4d77-8366-4a75f99b3d26.yaml
+      - NATS_URL=nats://nats:4222
+
+  service-9fd2041b:
+    build:
+      context: .
+      dockerfile: services/srvthree/Dockerfile
+    depends_on:
+      - nats
+      - config-loader
+      - postgres-fba1977e
+      - postgres-1f65e1cf
+      - postgres-d84ae75d
+    volumes:
+      - ./configs/cfg.9fd2041b-88bc-4ac1-8157-0188d37d0f75.yaml:/app/configs/cfg.9fd2041b-88bc-4ac1-8157-0188d37d0f75.yaml
+    environment:
+      - CONFIG_PATH=/app/configs/cfg.9fd2041b-88bc-4ac1-8157-0188d37d0f75.yaml
+      - NATS_URL=nats://nats:4222
+
+  service-e079e8d7:
+    build:
+      context: .
+      dockerfile: services/srvtwo/Dockerfile
+    depends_on:
+      - nats
+      - config-loader
+      - postgres-fba1977e
+      - postgres-1f65e1cf
+      - postgres-d84ae75d
+    volumes:
+      - ./configs/cfg.e079e8d7-9153-42a0-8b4c-d4e0022c2e6b.yaml:/app/configs/cfg.e079e8d7-9153-42a0-8b4c-d4e0022c2e6b.yaml
+    environment:
+      - CONFIG_PATH=/app/configs/cfg.9fd2041b-88bc-4ac1-8157-0188d37d0f75.yaml
       - NATS_URL=nats://nats:4222
 
 volumes:

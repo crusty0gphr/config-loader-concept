@@ -1,0 +1,12 @@
+app:
+  name: 9fd2041b-88bc-4ac1-8157-0188d37d0f75
+  version: 1.0.0
+  key_value_bucket: configs
+  config_path: ./configs/cfg.9fd2041b-88bc-4ac1-8157-0188d37d0f75.yaml
+
+nats:
+  host: nats://0.0.0.0:4222
+
+server:
+  host: localhost
+  port: 6969

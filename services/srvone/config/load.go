@@ -76,7 +76,6 @@ const natsUrlEnv = "NATS_URL"
 
 type External struct {
 	Database Database `yaml:"database"`
-	NATS     Nats     `yaml:"nats"`
 	Logging  Logging  `yaml:"logging"`
 	Features Features `yaml:"features"`
 }
@@ -96,15 +95,19 @@ type Features struct {
 }
 
 func LoadExternal(path string) External {
-	var cfg External
-
 	file, err := os.ReadFile(path)
 	if err != nil {
 		log.Printf("Error reading YAML file: %s\n", err)
-		return cfg
+		return External{}
 	}
 
-	err = yaml.Unmarshal(file, &cfg)
+	return ParseExternalConfig(file)
+}
+
+func ParseExternalConfig(contents []byte) External {
+	var cfg External
+
+	err := yaml.Unmarshal(contents, &cfg)
 	if err != nil {
 		log.Printf("Error unmarshaling YAML file: %s\n", err)
 		return cfg
